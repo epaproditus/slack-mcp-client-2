@@ -7,7 +7,7 @@ require (
 	github.com/mark3labs/mcp-go v0.31.0
 	github.com/openai/openai-go v1.8.2
 	github.com/prometheus/client_golang v1.22.0
-	github.com/slack-go/slack v0.16.0
+	github.com/slack-go/slack v0.17.3
 	github.com/tmc/langchaingo v0.1.13
 )
 
@@ -28,7 +28,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/goph/emperror v0.17.2 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
-	github.com/gorilla/websocket v1.4.2 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/huandu/xstrings v1.3.3 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
