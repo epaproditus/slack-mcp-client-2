@@ -95,7 +95,7 @@ func LoadConfig(configFile string, logger *logging.Logger) (*Config, error) {
 	cfg := &Config{
 		LLMProvider: ProviderOpenAI, // Default to OpenAI if not specified
 		LLMProviders: map[string]map[string]interface{}{
-			ProviderOpenAI:    {"type": "openai", "model": "gpt-4o"},                                       // Default OpenAI model
+			ProviderOpenAI:    {"type": "openai", "model": "gpt-4o", "rag_config": map[string]interface{}{"enabled": true, "provider": "simple", "database_path": "./knowledge.json", "chunk_size": 1000, "chunk_overlap": 200, "max_results": 10}},                                       // Default OpenAI model
 			ProviderOllama:    {"type": "ollama", "model": "llama3", "base_url": "http://localhost:11434"}, // Default Ollama settings
 			ProviderAnthropic: {"type": "anthropic", "model": "claude-3-5-sonnet-20241022"},                // Default Anthropic model
 		},
@@ -195,6 +195,12 @@ func LoadConfig(configFile string, logger *logging.Logger) (*Config, error) {
 		}
 		if model := os.Getenv("OPENAI_MODEL"); model != "" {
 			providerConfig["model"] = model
+		}
+		if baseURL := os.Getenv("OPENAI_BASE_URL"); baseURL != "" {
+			providerConfig["base_url"] = baseURL
+			if logger != nil {
+				logger.InfoKV("Overriding OpenAI base_url from environment variable", "base_url", baseURL)
+			}
 		}
 		cfg.LLMProviders[ProviderOpenAI] = providerConfig
 	}
