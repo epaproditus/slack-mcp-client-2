@@ -15,7 +15,7 @@ COPY . .
 RUN --mount=type=cache,target=/go/pkg/mod CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o slack-mcp-client ./cmd/
 
 # Use a minimal alpine image
-FROM alpine:3.22
+FROM alpine:3.23
 
 RUN apk --no-cache add ca-certificates tzdata
 
